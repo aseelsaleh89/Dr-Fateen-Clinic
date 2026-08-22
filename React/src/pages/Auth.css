@@ -1,0 +1,535 @@
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body,
+#root {
+
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  min-height: 100%;
+
+}
+
+
+body {
+
+  overflow-x: hidden;
+
+  font-family: "Cairo", "Poppins", sans-serif;
+
+}
+
+
+
+/* Main Wrapper */
+
+.auth-wrapper {
+
+  min-height: 100vh;
+
+  width: 100vw;
+
+  display: flex;
+
+  background: #f7f9fc;
+
+}
+
+
+
+
+
+/* Left Side */
+
+.auth-left {
+
+  width: 42%;
+
+  min-height: 100vh;
+
+  background: linear-gradient(
+    160deg,
+    #082b55,
+    #164b7a
+  );
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  color:white;
+
+}
+
+
+
+
+
+.auth-content {
+
+  width:70%;
+
+  max-width:390px;
+
+  text-align:right;
+
+}
+
+
+
+
+
+/* Logo */
+
+.doctor-logo {
+
+  width:90px;
+
+  height:90px;
+
+  object-fit:contain;
+
+  display:block;
+
+  margin:0 auto 18px;
+
+}
+
+
+
+
+
+/* Clinic Name */
+
+.auth-content h1 {
+
+  font-size:30px;
+
+  text-align:center;
+
+  margin:0 0 30px;
+
+  color:white;
+
+  font-weight:800;
+
+}
+
+
+
+
+
+/* Top */
+
+.auth-top {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:35px;
+
+  font-size:15px;
+
+}
+
+
+
+.auth-top a {
+
+  color:#f28c18;
+
+  text-decoration:none;
+
+  font-weight:bold;
+
+}
+
+
+
+
+
+/* Form */
+
+.auth-content form {
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+
+
+
+
+.auth-content label {
+
+  color:white;
+
+  font-size:14px;
+
+  margin-bottom:8px;
+
+  font-weight:bold;
+
+}
+
+
+
+
+
+.auth-content input {
+
+  width:100%;
+
+  height:48px;
+
+  border-radius:10px;
+
+  border:1px solid rgba(255,255,255,0.3);
+
+  outline:none;
+
+  padding:0 15px;
+
+  margin-bottom:18px;
+
+  font-size:14px;
+
+  background:white;
+
+  color:#082b55;
+
+}
+
+
+
+
+
+.auth-content input:focus {
+
+  border:2px solid #f28c18;
+
+}
+
+
+
+
+
+/* Forgot Password */
+
+.forgot-password {
+
+  margin-bottom:15px;
+
+}
+
+
+
+.forgot-password a {
+
+  color:#f28c18;
+
+  text-decoration:none;
+
+  font-size:14px;
+
+}
+
+
+
+
+
+/* Remember */
+
+.remember {
+
+  display:flex;
+
+  flex-direction:row;
+
+  align-items:center;
+
+  gap:8px;
+
+  margin-bottom:20px;
+
+}
+
+
+
+
+
+.remember input {
+
+  width:16px;
+
+  height:16px;
+
+  margin:0;
+
+}
+
+
+
+
+
+/* Button */
+
+.auth-content button {
+
+  height:50px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#f28c18;
+
+  color:white;
+
+  font-size:17px;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+
+
+
+
+.auth-content button:hover {
+
+  background:#d87508;
+
+  transform:translateY(-2px);
+
+}
+
+
+
+
+
+/* Error */
+
+.error-box {
+
+  background:#ffe1e1;
+
+  color:#a00000;
+
+  padding:10px;
+
+  border-radius:10px;
+
+  margin-bottom:15px;
+
+}
+
+
+
+
+
+
+
+/* Right Side Image */
+
+.auth-right {
+
+  width:58%;
+
+  min-height:100vh;
+
+
+  background:
+
+  linear-gradient(
+    rgba(8,43,85,0.25),
+    rgba(8,43,85,0.25)
+  ),
+
+  url("../assets/doctor-banner.png");
+
+
+
+  background-size:cover;
+
+
+  background-position:center;
+
+
+  background-repeat:no-repeat;
+
+
+
+  display:flex;
+
+  align-items:flex-end;
+
+  justify-content:center;
+
+
+
+  padding:40px;
+
+}
+
+
+
+
+
+/* Text Card */
+
+.image-card {
+
+  width:430px;
+
+  padding:25px;
+
+
+  background:rgba(8,43,85,0.78);
+
+
+  border-radius:18px;
+
+
+  backdrop-filter:blur(8px);
+
+
+  text-align:center;
+
+
+  margin-bottom:25px;
+
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+
+
+
+
+.image-card h2 {
+
+  margin:0 0 12px;
+
+
+  font-size:32px;
+
+
+  font-weight:800;
+
+
+  color:white;
+
+
+}
+
+
+
+
+
+.image-card p {
+
+  margin:0;
+
+
+  font-size:17px;
+
+
+  color:#f28c18;
+
+
+  line-height:1.8;
+
+
+}
+
+
+
+
+
+
+
+/* Mobile */
+
+@media(max-width:850px){
+
+
+.auth-wrapper {
+
+  flex-direction:column;
+
+}
+
+
+
+.auth-left,
+
+.auth-right {
+
+  width:100%;
+
+}
+
+
+
+.auth-left {
+
+  min-height:auto;
+
+  padding:50px 0;
+
+}
+
+
+
+.auth-right {
+
+  min-height:400px;
+
+  padding:20px;
+
+}
+
+
+
+.auth-content {
+
+  width:85%;
+
+}
+
+
+
+.image-card {
+
+  width:90%;
+
+}
+
+
+
+.image-card h2 {
+
+  font-size:26px;
+
+}
+
+
+}

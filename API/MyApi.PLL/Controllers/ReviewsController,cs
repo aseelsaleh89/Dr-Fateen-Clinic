@@ -1,0 +1,124 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MyApi.DAL.Data;
+using MyApi.DAL.Models;
+using System.Security.Claims;
+
+
+namespace MyApi.PLL.Controllers
+{
+
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ReviewsController : ControllerBase
+    {
+
+        private readonly ApplicationDbContext _context;
+
+
+        public ReviewsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+
+
+        // عرض التقييمات
+        [HttpGet]
+        public async Task<IActionResult> GetReviews()
+        {
+
+            var reviews = await _context.Reviews
+                .Include(r => r.User)
+                .Select(r => new
+                {
+                    id = r.Id,
+                    userName = r.User!.FullName,
+                    rating = r.Rating,
+                    comment = r.Comment,
+                    createdAt = r.CreatedAt
+                })
+                .OrderByDescending(r => r.createdAt)
+                .ToListAsync();
+
+
+            return Ok(reviews);
+
+        }
+
+
+
+
+        // إضافة تقييم
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> CreateReview(
+            [FromBody] Review request
+        )
+        {
+
+
+            var userId = User.FindFirstValue(
+                ClaimTypes.NameIdentifier
+            );
+
+
+            if(userId == null)
+                return Unauthorized();
+
+
+
+            var review = new Review
+            {
+                UserId = userId,
+                Rating = request.Rating,
+                Comment = request.Comment
+            };
+
+
+
+            await _context.Reviews.AddAsync(review);
+
+            await _context.SaveChangesAsync();
+
+
+
+            return Ok(new
+            {
+                message = "Review added successfully"
+            });
+
+        }
+
+
+
+
+        // حذف تقييم
+        [Authorize(Roles="ADMIN")]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+
+            var review = await _context.Reviews.FindAsync(id);
+
+
+            if(review == null)
+                return NotFound();
+
+
+
+            _context.Reviews.Remove(review);
+
+            await _context.SaveChangesAsync();
+
+
+
+            return Ok("Review deleted");
+
+        }
+
+
+    }
+
+}

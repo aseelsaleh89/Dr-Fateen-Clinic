@@ -1,0 +1,296 @@
+.booking-page {
+
+  min-height:100vh;
+
+  background:#f7f9fc;
+
+  font-family:"Cairo",sans-serif;
+
+  direction:rtl;
+
+}
+
+
+
+
+
+/* HEADER */
+
+.booking-header {
+
+  text-align:center;
+
+  padding:60px 20px 40px;
+
+}
+
+
+
+.booking-header h1 {
+
+  font-size:42px;
+
+  font-weight:900;
+
+  color:#082b55;
+
+  margin-bottom:10px;
+
+}
+
+
+
+.booking-header p {
+
+  color:#777;
+
+  font-size:18px;
+
+}
+
+
+
+
+
+
+
+/* APPOINTMENTS */
+
+.appointments-grid {
+
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+  gap:25px;
+
+  padding:30px 60px;
+
+
+}
+
+
+
+
+
+
+
+/* CARD */
+
+
+.appointment-card {
+
+
+  background:white;
+
+  border-radius:20px;
+
+  padding:25px;
+
+  box-shadow:
+
+  0 8px 25px rgba(0,0,0,.10);
+
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  border:3px solid transparent;
+
+
+}
+
+
+
+.appointment-card:hover {
+
+
+  transform:translateY(-8px);
+
+
+}
+
+
+
+
+.appointment-card.selected {
+
+
+  border-color:#f28c18;
+
+
+}
+
+
+
+
+
+
+
+/* INFO */
+
+
+.appointment-info {
+
+
+  text-align:center;
+
+
+}
+
+
+
+.appointment-info h2 {
+
+
+  color:#082b55;
+
+  font-size:28px;
+
+  margin-bottom:15px;
+
+
+}
+
+
+
+.appointment-info p {
+
+
+  color:#555;
+
+  font-size:17px;
+
+  margin:8px 0;
+
+
+}
+
+
+
+
+
+
+
+/* BUTTON */
+
+
+.appointment-info button,
+
+.booking-actions button {
+
+
+  margin-top:20px;
+
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  background:#f28c18;
+
+  color:white;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-family:"Cairo",sans-serif;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  transition:.3s;
+
+
+}
+
+
+
+.appointment-info button:hover,
+
+.booking-actions button:hover {
+
+
+  background:#d87508;
+
+
+}
+
+
+
+
+
+
+
+/* CONFIRM */
+
+
+.booking-actions {
+
+
+  padding:20px 60px 60px;
+
+
+}
+
+
+
+
+.booking-actions button {
+
+
+  max-width:400px;
+
+  display:block;
+
+  margin:auto;
+
+
+}
+
+
+
+
+
+
+
+@media(max-width:900px){
+
+
+
+.appointments-grid {
+
+
+ padding:30px 20px;
+
+
+}
+
+
+
+.booking-actions {
+
+
+ padding:20px;
+
+
+}
+
+
+
+.booking-header h1 {
+
+
+ font-size:32px;
+
+
+}
+
+
+
+}

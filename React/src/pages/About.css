@@ -1,0 +1,314 @@
+.about-page {
+
+  min-height:100vh;
+
+  background:#f7f9fc;
+
+  color:#333;
+
+  font-family:"Cairo",sans-serif;
+
+  direction:rtl;
+
+}
+
+
+
+/* HERO */
+
+.about-hero {
+
+  padding:150px 50px 80px;
+
+  text-align:center;
+
+
+  background:
+
+  linear-gradient(
+  rgba(8,43,85,.55),
+  rgba(8,43,85,.55)
+  ),
+
+  url("http://localhost:5120/uploads/clinic.jpg");
+
+
+  background-size:cover;
+
+  background-position:center;
+
+  color:white;
+
+}
+
+
+
+.about-hero h1 {
+
+  font-size:65px;
+
+  font-weight:900;
+
+  margin-bottom:20px;
+
+}
+
+
+
+.about-hero p {
+
+  max-width:850px;
+
+  margin:auto;
+
+  font-size:20px;
+
+  line-height:1.9;
+
+}
+
+
+
+
+
+
+
+/* ABOUT MAIN */
+
+.about-main {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:50px;
+
+  padding:60px 50px;
+
+  background:white;
+
+}
+
+
+
+.about-image {
+
+  width:45%;
+
+}
+
+
+
+.about-image img {
+
+  width:100%;
+
+  border-radius:30px;
+
+}
+
+
+
+.about-description {
+
+  width:55%;
+
+}
+
+
+
+.about-description h2 {
+
+  color:#082b55;
+
+  font-size:40px;
+
+}
+
+
+
+.about-description p {
+
+  color:#555;
+
+  font-size:18px;
+
+  line-height:2;
+
+}
+
+
+
+.about-btn {
+
+  display:inline-block;
+
+  margin-top:20px;
+
+  background:#f28c18;
+
+  color:white;
+
+  padding:15px 40px;
+
+  border-radius:30px;
+
+  text-decoration:none;
+
+  font-weight:bold;
+
+}
+
+
+
+
+
+
+
+/* CARDS */
+
+
+.about-content {
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:25px;
+
+  padding:60px 50px;
+
+}
+
+
+
+.about-content div {
+
+  background:white;
+
+  padding:35px;
+
+  border-radius:25px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+  transition:.3s;
+
+}
+
+
+
+.about-content div:hover {
+
+  transform:translateY(-8px);
+
+}
+
+
+
+.about-content h2 {
+
+  color:#082b55;
+
+  margin-bottom:15px;
+
+}
+
+
+
+.about-content p {
+
+  line-height:1.8;
+
+  color:#555;
+
+}
+
+
+
+
+
+
+
+/* BUTTON */
+
+
+.about-action {
+
+  text-align:center;
+
+  padding-bottom:60px;
+
+}
+
+
+
+.about-action a {
+
+  background:#f28c18;
+
+  color:white;
+
+  text-decoration:none;
+
+  padding:15px 40px;
+
+  border-radius:30px;
+
+  font-weight:bold;
+
+}
+
+
+
+
+
+@media(max-width:900px){
+
+
+.about-main {
+
+ flex-direction:column;
+
+ padding:40px 20px;
+
+}
+
+
+
+.about-image,
+.about-description {
+
+ width:100%;
+
+}
+
+
+
+.about-content {
+
+ grid-template-columns:1fr;
+
+ padding:30px 20px;
+
+}
+
+
+
+.about-hero {
+
+ padding:120px 20px 60px;
+
+}
+
+
+
+.about-hero h1 {
+
+ font-size:42px;
+
+}
+
+
+
+}
