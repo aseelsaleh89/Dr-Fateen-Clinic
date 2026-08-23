@@ -94,11 +94,13 @@ body {
 
   height:90px;
 
-  object-fit:contain;
+  object-fit:cover;
 
   display:block;
 
   margin:0 auto 18px;
+
+  border-radius:50%;
 
 }
 

@@ -155,12 +155,9 @@ const confirmBooking = async () => {
 
 
 
-                <p>
-
-                  الساعة:
-                  {item.time}
-
-                </p>
+              <p>
+  {item.time}
+</p>
 
 
 

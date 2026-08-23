@@ -1,186 +1,306 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { 
+  BrowserRouter, 
+  Routes, 
+  Route, 
+  Navigate 
+} from "react-router-dom";
 
+
+// Pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ConfirmEmail from "../pages/ConfirmEmail";
 import Services from "../pages/Services";
 import Booking from "../pages/Booking";
-
 import MyBookings from "../pages/MyBookings";
-import AdminDashboard from "../pages/AdminDashboard";
-
-import ProtectedRoute from "./ProtectedRoute";
-
 import About from "../pages/About";
-
 import BookingSuccess from "../pages/BookingSuccess";
-
 import PaymentPage from "../pages/PaymentPage";
-
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
+
+
+// Patient Protection
+import ProtectedRoute from "./ProtectedRoute";
+
+
+// Admin
+import AdminRoute from "./AdminRoute";
+
+import AdminLayout from "../admin/AdminLayout";
+import Dashboard from "../admin/Dashboard";
+import Appointments from "../admin/Appointments";
+import Schedule from "../admin/Schedule";
+import Patients from "../admin/Patients";
+import AdminProfile from "../admin/AdminProfile";
 
 
 
 export default function AppRoutes() {
 
 
-  return (
+return (
 
+<BrowserRouter>
 
-    <BrowserRouter>
 
+<Routes>
 
-      <Routes>
 
 
+{/* Redirect */}
 
-        <Route 
-          path="/" 
-          element={<Navigate to="/home" />} 
-        />
+<Route
 
+path="/"
 
+element={
+<Navigate to="/home"/>
+}
 
-        {/* Main */}
+/>
 
-        <Route 
-          path="/home" 
-          element={<Home />} 
-        />
 
 
+{/* ================= MAIN ================= */}
 
-        <Route 
-          path="/about" 
-          element={<About />} 
-        />
 
+<Route
 
+path="/home"
 
-        {/* Medical Services */}
+element={<Home/>}
 
-        <Route 
-          path="/services" 
-          element={<Services />} 
-        />
+/>
 
 
 
-        {/* Appointment Booking */}
+<Route
 
-        <Route 
-          path="/booking" 
-          element={<Booking />} 
-        />
+path="/about"
 
+element={<About/>}
 
+/>
 
-        <Route 
-          path="/booking-success" 
-          element={<BookingSuccess />} 
-        />
 
 
+<Route
 
-        {/* Authentication */}
+path="/services"
 
+element={<Services/>}
 
-        <Route 
-          path="/login" 
-          element={<Login />} 
-        />
+/>
 
 
 
-        <Route 
-          path="/register" 
-          element={<Register />} 
-        />
+<Route
 
+path="/booking"
 
+element={<Booking/>}
 
-        <Route 
-          path="/forgot-password" 
-          element={<ForgotPassword />} 
-        />
+/>
 
 
 
-        <Route 
-          path="/reset-password" 
-          element={<ResetPassword />} 
-        />
+<Route
 
+path="/booking-success"
 
+element={<BookingSuccess/>}
 
+/>
 
-        {/* Patient Area */}
 
 
-        <Route
+{/* ================= AUTH ================= */}
 
-          path="/my-bookings"
 
-          element={
 
-            <ProtectedRoute>
+<Route
 
-              <MyBookings />
+path="/login"
 
-            </ProtectedRoute>
+element={<Login/>}
 
-          }
+/>
 
-        />
 
 
+<Route
 
+path="/register"
 
+element={<Register/>}
 
-        {/* Doctor/Admin Area */}
+/>
 
 
-        <Route
 
-          path="/admin-dashboard"
+<Route
 
-          element={
+path="/confirm-email"
 
-            <ProtectedRoute>
+element={<ConfirmEmail/>}
 
-              <AdminDashboard />
+/>
 
-            </ProtectedRoute>
 
-          }
 
-        />
-<Route 
-  path="/confirm-email" 
-  element={<ConfirmEmail/>}
+<Route
+
+path="/forgot-password"
+
+element={<ForgotPassword/>}
+
+/>
+
+
+
+<Route
+
+path="/reset-password"
+
+element={<ResetPassword/>}
+
 />
 
 
 
 
-        <Route
 
-          path="/payment"
-
-          element={<PaymentPage />}
-
-        />
+{/* ================= PATIENT ================= */}
 
 
 
-      </Routes>
+<Route
+
+path="/my-bookings"
+
+element={
+
+<ProtectedRoute>
+
+<MyBookings/>
+
+</ProtectedRoute>
+
+}
+
+/>
 
 
 
-    </BrowserRouter>
 
-  );
+
+{/* ================= PAYMENT ================= */}
+
+
+
+<Route
+
+path="/payment"
+
+element={<PaymentPage/>}
+
+/>
+
+
+
+
+
+
+
+{/* ================= ADMIN PANEL ================= */}
+
+
+
+<Route
+
+
+path="/admin"
+
+
+element={
+
+<AdminRoute>
+
+<AdminLayout/>
+
+</AdminRoute>
+
+}
+
+
+>
+
+
+<Route
+
+index
+
+element={<Dashboard/>}
+
+/>
+
+
+
+<Route
+
+path="appointments"
+
+element={<Appointments/>}
+
+/>
+
+
+
+<Route
+
+path="schedule"
+
+element={<Schedule/>}
+
+/>
+
+
+
+<Route
+
+path="patients"
+
+element={<Patients/>}
+
+/>
+
+
+
+<Route
+
+path="profile"
+
+element={<AdminProfile/>}
+
+/>
+
+
+
+</Route>
+
+
+
+
+
+</Routes>
+
+
+</BrowserRouter>
+
+
+);
+
 
 }

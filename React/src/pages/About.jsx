@@ -3,12 +3,33 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./About.css";
 
-
+import { useEffect, useRef, useState } from "react";
 export default function About() {
+  const [showImage, setShowImage] = useState(false);
+  const imageRef = useRef(null);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowImage(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, []);
 
   return (
-
 
     <div className="about-page">
 
@@ -23,16 +44,37 @@ export default function About() {
       <section className="about-hero">
 
 
-        <h1>
-          عيادة د. فاتن أسامة صالح
-        </h1>
+       <h1 className="title-animation">
+
+  <span>عيادة</span>
+  <span>د.</span>
+  <span>فاتن</span>
+  <span>أسامة</span>
+  <span>صالح</span>
+
+</h1>
 
 
-        <p>
 
-          نقدم رعاية طبية مميزة للأطفال والعائلة
-          في بيئة صحية آمنة ومريحة تهتم براحة المريض
-          وجودة الخدمة الطبية.
+        <p className="word-animation">
+
+          <span>نقدم</span>
+          <span>رعاية</span>
+          <span>طبية</span>
+          <span>مميزة</span>
+          <span>للأطفال</span>
+          <span>والعائلة</span>
+          <span>في</span>
+          <span>بيئة</span>
+          <span>صحية</span>
+          <span>آمنة</span>
+          <span>ومريحة</span>
+          <span>تهتم</span>
+          <span>براحة</span>
+          <span>المريض</span>
+          <span>وجودة</span>
+          <span>الخدمة</span>
+          <span>الطبية</span>
 
         </p>
 
@@ -45,24 +87,28 @@ export default function About() {
 
 
 
-      {/* ABOUT CONTENT */}
-
+      {/* ABOUT MAIN */}
 
 
       <section className="about-main">
 
 
 
-        <div className="about-image">
+       <div 
+className="about-image"
+ref={imageRef}
+>
 
 
-          <img
+  <img
 
-            src="http://localhost:5120/uploads/name.jpg"
+src="http://localhost:5120/uploads/name.jpg"
 
-            alt="عيادة د. فاتن أسامة صالح"
+alt="عيادة د. فاتن أسامة صالح"
 
-          />
+className={showImage ? "about-show" : ""}
+
+/>
 
 
         </div>
@@ -79,6 +125,7 @@ export default function About() {
           </h2>
 
 
+
           <p>
 
             عيادة د. فاتن أسامة صالح تهدف إلى تقديم
@@ -90,9 +137,13 @@ export default function About() {
 
 
 
-          <Link 
+
+          <Link
+
             to="/booking"
+
             className="about-btn"
+
           >
 
             احجز موعدك
@@ -100,10 +151,14 @@ export default function About() {
           </Link>
 
 
+
         </div>
 
 
+
       </section>
+
+
 
 
 
@@ -119,12 +174,15 @@ export default function About() {
 
 
 
+
+
         <div>
 
 
           <h2>
             رؤيتنا
           </h2>
+
 
 
           <p>
@@ -141,12 +199,15 @@ export default function About() {
 
 
 
+
+
         <div>
 
 
           <h2>
             خدماتنا
           </h2>
+
 
 
           <p>
@@ -164,6 +225,9 @@ export default function About() {
 
 
 
+
+
+
         <div>
 
 
@@ -172,15 +236,28 @@ export default function About() {
           </h2>
 
 
-          <p>
 
-            نوفر بيئة مريحة وهادئة تساعد الأطفال
-            والعائلات على الشعور بالاطمئنان أثناء الزيارة.
+
+          <p className="word-animation">
+
+
+            <span>نوفر</span>
+            <span>بيئة</span>
+            <span>مريحة</span>
+            <span>وهادئة</span>
+            <span>تساعد</span>
+            <span>الأطفال</span>
+            <span>والعائلات</span>
+            <span>على</span>
+            <span>الشعور</span>
+            <span>بالاطمئنان</span>
+
 
           </p>
 
 
         </div>
+
 
 
 
@@ -192,7 +269,10 @@ export default function About() {
 
 
 
+
+
       {/* ACTION */}
+
 
 
       <section className="about-action">
@@ -206,6 +286,9 @@ export default function About() {
 
 
       </section>
+
+
+
 
 
 

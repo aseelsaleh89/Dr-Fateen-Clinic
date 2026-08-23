@@ -1,4 +1,5 @@
 using System.Text;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +10,12 @@ using MyApi.DAL.Data;
 using MyApi.DAL.Models;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 
-builder.Services.AddControllers();
-
+// ================= DATABASE =================
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -24,54 +25,86 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 
-// Identity
+
+
+// ================= IDENTITY =================
+
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
+
     options.Password.RequireDigit = false;
+
     options.Password.RequireLowercase = false;
+
     options.Password.RequireUppercase = false;
+
     options.Password.RequireNonAlphanumeric = false;
+
     options.Password.RequiredLength = 6;
+
 
     options.User.RequireUniqueEmail = true;
 
-    options.SignIn.RequireConfirmedEmail = true;
+
+options.SignIn.RequireConfirmedEmail = false;
 
 })
+
 .AddEntityFrameworkStores<ApplicationDbContext>()
+
 .AddDefaultTokenProviders();
 
 
 
 
-// JWT
+
+
+
+// ================= JWT =================
+
 
 builder.Services.AddAuthentication(options =>
 {
+
     options.DefaultAuthenticateScheme =
         JwtBearerDefaults.AuthenticationScheme;
+
 
     options.DefaultChallengeScheme =
         JwtBearerDefaults.AuthenticationScheme;
 
+
 })
+
 .AddJwtBearer(options =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters
+
+    options.TokenValidationParameters =
+    new TokenValidationParameters
     {
+
         ValidateIssuer = true,
+
 
         ValidateAudience = true,
 
+
         ValidateLifetime = true,
+
 
         ValidateIssuerSigningKey = true,
 
 
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
 
-        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ValidIssuer =
+        builder.Configuration["Jwt:Issuer"],
+
+
+
+        ValidAudience =
+        builder.Configuration["Jwt:Audience"],
+
 
 
         IssuerSigningKey =
@@ -80,8 +113,12 @@ builder.Services.AddAuthentication(options =>
                 builder.Configuration["Jwt:Key"]!
             )
         )
+
     };
+
 });
+
+
 
 
 
@@ -90,7 +127,11 @@ builder.Services.AddAuthorization();
 
 
 
-// Services
+
+
+// ================= SERVICES =================
+
+
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
@@ -107,25 +148,45 @@ builder.Services.AddHttpContextAccessor();
 
 
 
+
+
+
+// ================= CONTROLLERS =================
+
+
+builder.Services.AddControllers();
+
+
 builder.Services.AddEndpointsApiExplorer();
+
 
 builder.Services.AddSwaggerGen();
 
 
 
 
-// CORS
+
+
+// ================= CORS =================
+
 
 builder.Services.AddCors(options =>
 {
+
     options.AddPolicy("ReactPolicy", policy =>
     {
+
         policy
         .WithOrigins("http://localhost:5173")
         .AllowAnyHeader()
         .AllowAnyMethod();
+
     });
+
 });
+
+
+
 
 
 
@@ -137,16 +198,22 @@ var app = builder.Build();
 
 
 
-// Create Roles + Admin
 
-using (var scope = app.Services.CreateScope())
+
+// ================= CREATE ROLES + ADMIN =================
+
+
+using(var scope = app.Services.CreateScope())
 {
 
     var services = scope.ServiceProvider;
 
 
+
     var roleManager =
         services.GetRequiredService<RoleManager<IdentityRole>>();
+
+
 
 
     var userManager =
@@ -154,27 +221,43 @@ using (var scope = app.Services.CreateScope())
 
 
 
-    string[] roles =
+
+
+   string[] roles =
+{
+    "USER",
+    "Admin"
+};
+
+
+
+
+
+    foreach(var role in roles)
     {
-        "USER",
-        "ADMIN"
-    };
 
-
-
-    foreach (var role in roles)
-    {
-        if (!await roleManager.RoleExistsAsync(role))
+        if(!await roleManager.RoleExistsAsync(role))
         {
+
             await roleManager.CreateAsync(
                 new IdentityRole(role)
             );
+
         }
+
     }
 
 
 
-    var adminEmail = "admin@test.com";
+
+
+
+
+    // حساب الدكتورة
+
+
+    var adminEmail = "doctor@gmail.com";
+
 
 
     var admin =
@@ -182,51 +265,85 @@ using (var scope = app.Services.CreateScope())
 
 
 
+
+
     if(admin == null)
     {
 
+
         admin = new ApplicationUser
         {
-            FullName = "System Admin",
+
+            FullName = "Dr. Fateen",
+
 
             UserName = adminEmail,
 
+
             Email = adminEmail,
 
+
             EmailConfirmed = true
+
         };
+
+
+
 
 
 
         var result =
             await userManager.CreateAsync(
                 admin,
-                "Admin@123"
+                "Doctor@123"
             );
+
+
+
 
 
 
         if(result.Succeeded)
         {
-            await userManager.AddToRoleAsync(
-                admin,
-                "ADMIN"
-            );
+
+
+         await userManager.AddToRoleAsync(
+    admin,
+    "Admin"
+);
+
+
         }
+
 
     }
 
+
 }
 
+
+
+
+
+
+
+
+
+// ================= MIDDLEWARE =================
 
 
 
 if(app.Environment.IsDevelopment())
 {
+
     app.UseSwagger();
 
     app.UseSwaggerUI();
+
 }
+
+
+
 
 
 
@@ -234,7 +351,9 @@ app.UseHttpsRedirection();
 
 
 
+
 app.UseCors("ReactPolicy");
+
 
 
 
@@ -242,13 +361,17 @@ app.UseStaticFiles();
 
 
 
+
 app.UseAuthentication();
+
 
 app.UseAuthorization();
 
 
 
+
 app.MapControllers();
+
 
 
 

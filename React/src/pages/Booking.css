@@ -2,7 +2,7 @@
 
   min-height:100vh;
 
-  background:#f7f9fc;
+  background:#f5f9ff;
 
   font-family:"Cairo",sans-serif;
 
@@ -12,15 +12,24 @@
 
 
 
+/* ================= HEADER ================= */
 
-
-/* HEADER */
 
 .booking-header {
 
   text-align:center;
 
-  padding:60px 20px 40px;
+  padding:80px 20px 50px;
+
+  background:
+
+  linear-gradient(
+  135deg,
+  #082b55,
+  #0b5ed7
+  );
+
+  color:white;
 
 }
 
@@ -28,13 +37,11 @@
 
 .booking-header h1 {
 
-  font-size:42px;
+  font-size:48px;
 
   font-weight:900;
 
-  color:#082b55;
-
-  margin-bottom:10px;
+  margin-bottom:15px;
 
 }
 
@@ -42,9 +49,9 @@
 
 .booking-header p {
 
-  color:#777;
+  font-size:20px;
 
-  font-size:18px;
+  color:#e8f2ff;
 
 }
 
@@ -53,19 +60,23 @@
 
 
 
+/* ================= APPOINTMENTS GRID ================= */
 
-/* APPOINTMENTS */
 
 .appointments-grid {
 
 
   display:grid;
 
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:
 
-  gap:25px;
+  repeat(auto-fit,minmax(260px,1fr));
 
-  padding:30px 60px;
+
+  gap:30px;
+
+
+  padding:50px 70px;
 
 
 }
@@ -75,8 +86,7 @@
 
 
 
-
-/* CARD */
+/* ================= APPOINTMENT CARD ================= */
 
 
 .appointment-card {
@@ -84,30 +94,80 @@
 
   background:white;
 
-  border-radius:20px;
 
-  padding:25px;
+  border-radius:28px;
 
-  box-shadow:
 
-  0 8px 25px rgba(0,0,0,.10);
+  padding:30px 25px;
 
 
   cursor:pointer;
 
-  transition:.3s;
 
-  border:3px solid transparent;
+  border:2px solid transparent;
+
+
+  box-shadow:
+
+  0 10px 35px rgba(8,43,85,.10);
+
+
+
+  transition:.4s;
+
+
+  position:relative;
+
+
+  overflow:hidden;
 
 
 }
 
 
 
+/* خط علوي للكرت */
+
+
+.appointment-card::before {
+
+
+  content:"";
+
+
+  position:absolute;
+
+
+  top:0;
+
+
+  right:0;
+
+
+  width:100%;
+
+
+  height:5px;
+
+
+  background:#0b5ed7;
+
+
+}
+
+
+
+
+
 .appointment-card:hover {
 
 
-  transform:translateY(-8px);
+  transform:translateY(-10px);
+
+
+  box-shadow:
+
+  0 20px 45px rgba(8,43,85,.18);
 
 
 }
@@ -118,7 +178,10 @@
 .appointment-card.selected {
 
 
-  border-color:#f28c18;
+  border-color:#0b5ed7;
+
+
+  transform:translateY(-8px);
 
 
 }
@@ -129,7 +192,7 @@
 
 
 
-/* INFO */
+/* ================= INFO ================= */
 
 
 .appointment-info {
@@ -147,9 +210,14 @@
 
   color:#082b55;
 
-  font-size:28px;
 
-  margin-bottom:15px;
+  font-size:30px;
+
+
+  font-weight:900;
+
+
+  margin-bottom:20px;
 
 
 }
@@ -161,9 +229,58 @@
 
   color:#555;
 
-  font-size:17px;
 
-  margin:8px 0;
+  font-size:18px;
+
+
+  margin:12px 0;
+
+
+}
+
+
+
+
+
+/* الوقت */
+
+
+.appointment-info p:nth-child(2)::before {
+
+
+  content:"🕒 ";
+
+}
+
+
+
+
+
+/* الحالة */
+
+
+.appointment-info p:nth-child(3) {
+
+
+  display:inline-block;
+
+
+  background:#eaf3ff;
+
+
+  color:#0b5ed7;
+
+
+  padding:7px 20px;
+
+
+  border-radius:30px;
+
+
+  font-size:15px;
+
+
+  font-weight:bold;
 
 
 }
@@ -174,35 +291,44 @@
 
 
 
-/* BUTTON */
+/* ================= SMALL BUTTON ================= */
 
 
-.appointment-info button,
-
-.booking-actions button {
+.appointment-info button {
 
 
-  margin-top:20px;
+  margin-top:25px;
+
 
   width:100%;
 
-  padding:14px;
+
+  padding:15px;
+
 
   border:none;
 
-  background:#f28c18;
+
+  border-radius:15px;
+
+
+  background:#0b5ed7;
+
 
   color:white;
 
-  border-radius:12px;
-
-  cursor:pointer;
 
   font-family:"Cairo",sans-serif;
 
-  font-size:16px;
+
+  font-size:17px;
+
 
   font-weight:bold;
+
+
+  cursor:pointer;
+
 
   transition:.3s;
 
@@ -211,12 +337,14 @@
 
 
 
-.appointment-info button:hover,
 
-.booking-actions button:hover {
+.appointment-info button:hover {
 
 
-  background:#d87508;
+  background:#084298;
+
+
+  transform:translateY(-3px);
 
 
 }
@@ -227,13 +355,16 @@
 
 
 
-/* CONFIRM */
+/* ================= CONFIRM BUTTON ================= */
 
 
 .booking-actions {
 
 
-  padding:20px 60px 60px;
+  padding:20px 70px 70px;
+
+
+  text-align:center;
 
 
 }
@@ -244,11 +375,54 @@
 .booking-actions button {
 
 
-  max-width:400px;
+  max-width:450px;
 
-  display:block;
 
-  margin:auto;
+  width:100%;
+
+
+  padding:17px;
+
+
+  border:none;
+
+
+  border-radius:18px;
+
+
+  background:#082b55;
+
+
+  color:white;
+
+
+  font-family:"Cairo",sans-serif;
+
+
+  font-size:18px;
+
+
+  font-weight:bold;
+
+
+  cursor:pointer;
+
+
+  transition:.3s;
+
+
+}
+
+
+
+
+.booking-actions button:hover {
+
+
+  background:#0b5ed7;
+
+
+  transform:translateY(-4px);
 
 
 }
@@ -258,8 +432,61 @@
 
 
 
+/* ================= ANIMATION ================= */
+
+
+.appointment-card {
+
+
+  animation:cardShow .7s ease forwards;
+
+
+}
+
+
+
+@keyframes cardShow {
+
+
+from {
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+
+to {
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+
+
+
+/* ================= MOBILE ================= */
+
 
 @media(max-width:900px){
+
+
+
+.booking-header h1 {
+
+
+ font-size:34px;
+
+
+}
 
 
 
@@ -277,16 +504,6 @@
 
 
  padding:20px;
-
-
-}
-
-
-
-.booking-header h1 {
-
-
- font-size:32px;
 
 
 }

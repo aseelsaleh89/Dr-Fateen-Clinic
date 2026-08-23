@@ -66,10 +66,30 @@ export default function Login() {
         "role",
         res.data.role
       );
+const userData = {
+  id: res.data.userId,
+  role: res.data.role
+};
 
 
-      navigate("/");
+localStorage.setItem(
+  "user",
+  JSON.stringify(userData)
+);
 
+
+
+const role = userData.role?.toUpperCase();
+
+
+if(role === "ADMIN")
+{
+    navigate("/admin");
+}
+else
+{
+    navigate("/home");
+}
 
     } catch (err) {
 
